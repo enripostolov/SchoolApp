@@ -6,4 +6,5 @@ class Student < ApplicationRecord
     attribute :enrollment_date, type: Date
 
     has_and_belongs_to_many :parents
+    belongs_to :school_class
 end

@@ -1,0 +1,21 @@
+<%= form_for @lecture do |f| %>
+  <div>
+    <%= f.label "Lecture name"%>
+    <%= f.text_field :name %>
+  </div>
+  <br />
+  <div>
+    <%= f.label :teacher %>
+    <%= f.text_field :teacher %>
+  </div>
+  <br />
+  <div>
+    <%= f.label "Class" %>
+    <%= f.text_field :school_class %>
+  </div>
+  <br />
+  <br /><br />
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
