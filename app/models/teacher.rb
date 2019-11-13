@@ -1,7 +1,7 @@
 class Teacher < ApplicationRecord
   attribute :name
   attribute :surname
-  attribute :subjects, type: Array, default: []
+  attribute :subjects, :string, array: true
 
   has_and_belongs_to_many :school_classes
   has_many :lectures
