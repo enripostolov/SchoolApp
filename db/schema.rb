@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_220913) do
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "surname"
+    t.date "birth_date"
     t.string "fiscal_code"
     t.date "birth_date"
     t.string "enrollment_date"
