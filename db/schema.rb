@@ -10,17 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_212745) do
+ActiveRecord::Schema.define(version: 2019_11_13_212757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lectures", force: :cascade do |t|
+    t.date "start_time"
+    t.date "end_time"
+    t.string "topics"
+    t.bigint "teacher_id"
+    t.bigint "school_class_id"
+    t.index ["school_class_id"], name: "index_lectures_on_school_class_id"
+    t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
+  end
 
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.string "surname"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "parents_students", id: false, force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "parent_id", null: false
+    t.index ["parent_id"], name: "index_parents_students_on_parent_id"
+    t.index ["student_id"], name: "index_parents_students_on_student_id"
+  end
+
+  create_table "school_classes", force: :cascade do |t|
+    t.string "number"
+    t.string "section"
+    t.bigint "teachers_id"
+    t.index ["teachers_id"], name: "index_school_classes_on_teachers_id"
+  end
+
+  create_table "school_classes_teachers", id: false, force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "school_class_id", null: false
+    t.index ["school_class_id"], name: "index_school_classes_teachers_on_school_class_id"
+    t.index ["teacher_id"], name: "index_school_classes_teachers_on_teacher_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -28,9 +57,18 @@ ActiveRecord::Schema.define(version: 2019_11_13_212745) do
     t.string "surname"
     t.date "birth_date"
     t.string "fiscal_code"
-    t.datetime "enrollment_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.date "birth_date"
+    t.string "enrollment_date"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.text "subjects"
+    t.text "string"
+    t.text "Array"
+    t.bigint "school_classes_id"
+    t.index ["school_classes_id"], name: "index_teachers_on_school_classes_id"
   end
 
 end
