@@ -1,5 +1,7 @@
 <h1>Teacher <%= @teacher.to_s %></h1>
 <p>
   <strong>bella pe te</strong>
+</p>
+<%= button_to "New lecture", action: new_lecture_path %>
 
 <%= link_to 'Back', teachers_path %>
